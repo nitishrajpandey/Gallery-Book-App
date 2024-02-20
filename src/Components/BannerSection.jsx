@@ -3,6 +3,7 @@ import { IoSearchOutline } from "react-icons/io5";
 import { searchImg } from "../assets";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchBackgroundAsync } from "../Store/backgroundChangerSlice";
+import { fetchGallerySearchAsync } from "../Store/gallerySearchSlice";
 
 function BannerSection() {
   const inputElement = useRef();
@@ -22,16 +23,15 @@ function BannerSection() {
   }
   const valuelink =
     valueData[Math.floor(Math.random() * (15 - 0) + 0)].src.original;
-  console.log(valuelink);
 
   const handelOnKeyDown = (event) => {
     if (event.key === "Enter") {
-      dispatch(fetchBackgroundAsync(inputElement.current.value));
+      dispatch(fetchGallerySearchAsync(inputElement.current.value));
     }
   };
 
   const handelOnClick = () => {
-    dispatch(fetchBackgroundAsync(inputElement.current.value));
+    dispatch(fetchGallerySearchAsync(inputElement.current.value));
   };
 
   return (

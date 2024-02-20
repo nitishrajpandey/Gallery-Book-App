@@ -27,11 +27,13 @@ function BannerSection() {
   const handelOnKeyDown = (event) => {
     if (event.key === "Enter") {
       dispatch(fetchGallerySearchAsync(inputElement.current.value));
+      inputElement.current.value = "";
     }
   };
 
   const handelOnClick = () => {
     dispatch(fetchGallerySearchAsync(inputElement.current.value));
+    inputElement.current.value = "";
   };
 
   return (

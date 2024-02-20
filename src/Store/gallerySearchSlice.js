@@ -11,9 +11,10 @@ export const fetchGallerySearchAsync = createAsyncThunk("gallerySearch/fetchGall
 
 export const gallerySearchSlice = createSlice({
     name: "gallerySearch",
-    initialState: { value: [] },
+    initialState: {
+        value: []
+    },
     reducers: {
-
     },
     extraReducers: (builder) => {
         builder.addCase(fetchGallerySearchAsync.fulfilled, (state, action) => {
@@ -22,4 +23,5 @@ export const gallerySearchSlice = createSlice({
     }
 })
 
+export const { toggleSearch } = gallerySearchSlice.actions
 export default gallerySearchSlice.reducer

@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { fetchGallerySearch } from "../Api/fetchGallerySearch"
+import { fetchGalleryBookApi } from "../Api/fetchGalleryBookApi"
 
 
-export const fetchGallerySearchAsync = createAsyncThunk("gallerySearch/fetchGallerySearch",
-    async (value) => {
-        const { data } = await fetchGallerySearch(value);
+export const fetchGallerySearchAsync = createAsyncThunk("gallerySearch/fetchGalleryBookApi",
+    async (value = "laptop") => {
+        const { data } = await fetchGalleryBookApi(value);
         return data
     }
 )
@@ -23,5 +23,4 @@ export const gallerySearchSlice = createSlice({
     }
 })
 
-export const { toggleSearch } = gallerySearchSlice.actions
 export default gallerySearchSlice.reducer

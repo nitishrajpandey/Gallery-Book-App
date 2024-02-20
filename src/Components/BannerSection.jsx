@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
 import { IoSearchOutline } from "react-icons/io5";
-import { searchImg } from "../assets";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchBackgroundAsync } from "../Store/backgroundChangerSlice";
 import { fetchGallerySearchAsync } from "../Store/gallerySearchSlice";
@@ -10,7 +9,7 @@ function BannerSection() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchBackgroundAsync());
+    dispatch(fetchBackgroundAsync("nature"));
   }, []);
 
   const valueData = useSelector(
@@ -23,6 +22,8 @@ function BannerSection() {
   }
   const valuelink =
     valueData[Math.floor(Math.random() * (15 - 0) + 0)].src.original;
+
+  // search method
 
   const handelOnKeyDown = (event) => {
     if (event.key === "Enter") {

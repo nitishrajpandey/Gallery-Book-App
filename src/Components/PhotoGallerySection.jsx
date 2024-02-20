@@ -7,7 +7,7 @@ import { fetchGallerySearchAsync } from "../Store/gallerySearchSlice";
 
 function PhotoGallerySection() {
   const datavalue = useSelector((state) => state.gallerySearch.value.photos);
-  const datavalue1 = useSelector((state) => state.gallerySearch.value);
+  // const datavalue1 = useSelector((state) => state.gallerySearch.value);
 
   const dispatch = useDispatch();
 
@@ -15,7 +15,7 @@ function PhotoGallerySection() {
   // console.log(datavalue1);
 
   useEffect(() => {
-    dispatch(fetchGallerySearchAsync("nature"));
+    dispatch(fetchGallerySearchAsync());
   }, []);
 
   if (!datavalue) {
@@ -41,7 +41,7 @@ function PhotoGallerySection() {
         {datavalue.map((item) => (
           <div
             key={item.id}
-            className="relative group overflow-hidden mb-[14px] rounded-md"
+            className="relative group overflow-hidden mb-[15px] rounded-md shadow-md shadow-gray-600"
           >
             <img src={item.src.original} alt="" className="w-full bg-cover" />
             <div className="absolute bottom-0 left-0 w-full flex items-center justify-between p-3 bg-black bg-opacity-50 text-white xs:opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -58,8 +58,10 @@ function PhotoGallerySection() {
           </div>
         ))}
       </div>
-      <div>
-        {/* <button className="bg-green-500 px-4 py-2 rounded-lg">Next Page</button> */}
+      <div className="pt-20">
+        <button className="bg-green-500 px-4 py-2 rounded-lg text-white font-semibold text-xl shadow-md shadow-gray-500 active:scale-95 duration-300 ease-in-out">
+          Load More
+        </button>
       </div>
     </div>
   );

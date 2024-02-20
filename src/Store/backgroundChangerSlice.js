@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { fetchBackgroundChanger } from "../Api/backgroundChangerApi";
+import { fetchGalleryBookApi } from "../Api/fetchGalleryBookApi";
 
 
 
 export const fetchBackgroundAsync = createAsyncThunk("background/fetchBackground",
-    async (value) => {
-        const { data } = await fetchBackgroundChanger(value);
+    async (value = "flower") => {
+        const { data } = await fetchGalleryBookApi(value);
         return data
     }
 )

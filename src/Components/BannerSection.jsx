@@ -2,7 +2,10 @@ import React, { useEffect, useRef } from "react";
 import { IoSearchOutline } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchBackgroundAsync } from "../Store/backgroundChangerSlice";
-import { fetchGallerySearchAsync } from "../Store/gallerySearchSlice";
+import {
+  fetchGallerySearchAsync,
+  searchInput,
+} from "../Store/gallerySearchSlice";
 
 function BannerSection() {
   const inputElement = useRef();
@@ -26,23 +29,33 @@ function BannerSection() {
   // search method
 
   const handelOnKeyDown = (event) => {
-    if (event.key === "Enter") {
-      dispatch(fetchGallerySearchAsync(inputElement.current.value));
+    if (inputElement.current.value === "") {
+    } else if (event.key === "Enter") {
+      dispatch(
+        fetchGallerySearchAsync({ value: inputElement.current.value, page: 1 })
+      );
+      dispatch(searchInput(inputElement.current.value));
       inputElement.current.value = "";
     }
   };
 
   const handelOnClick = () => {
-    dispatch(fetchGallerySearchAsync(inputElement.current.value));
-    inputElement.current.value = "";
+    if (inputElement.current.value === "") {
+    } else {
+      dispatch(
+        fetchGallerySearchAsync({ value: inputElement.current.value, page: 1 })
+      );
+      dispatch(searchInput(inputElement.current.value));
+      inputElement.current.value = "";
+    }
   };
 
   return (
     <div
-      className="bg-cover bg-no-repeat bg-center"
+      className="bg-cover bg-no-repeat bg-center "
       style={{ backgroundImage: `url(${valuelink})` }}
     >
-      <div className=" flex justify-center py-3">
+      <div className=" flex justify-center py-5">
         <div className=" flex flex-col justify-center items-center w-[800px] text-center px-3 xs:px-5 text-white">
           <h1 className="text-3xl ssm:text-4xl md:text-5xl font-bold mb-4 ">
             Gallery Book

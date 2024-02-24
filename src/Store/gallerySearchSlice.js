@@ -7,12 +7,15 @@ export const fetchGallerySearchAsync = createAsyncThunk(
     async ({ value, page }) => {
         try {
             const response = await fetchGalleryBookApi(value, page);
+
             return response.data;
         } catch (error) {
             throw error;
         }
     }
 );
+
+
 
 export const fetchNextPageAsync = createAsyncThunk(
     "gallerySearch/fetchNextPage",
@@ -46,13 +49,11 @@ export const gallerySearchSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(fetchGallerySearchAsync.fulfilled, (state, action) => {
-                state.value = [...state.value, ...action.payload.photos];
-                state.pending = false
-
+                state.value = action.payload.photos; // Replace existing data with new search results
+                state.pending = false;
             })
             .addCase(fetchGallerySearchAsync.pending, (state, action) => {
-                state.pending = true
-
+                state.pending = true;
             })
             .addCase(fetchNextPageAsync.fulfilled, (state, action) => {
                 state.value = [...state.value, ...action.payload.photos];

@@ -14,7 +14,7 @@ function HeroSection() {
           style={{ backgroundImage: `url(${bgimg})` }}
         >
           Gallery Book
-          <span className="text-2xl block mt-10">
+          <span className="text-sm xxs:text-lg xs:text-xl ssm:text-2xl block mt-10">
             © 2024 NITISH RAJ . All Right Reserved
           </span>
         </h1>
